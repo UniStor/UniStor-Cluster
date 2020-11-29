@@ -1,0 +1,19 @@
+---
+
+
+- name: get list of keys
+  set_fact:
+    diskkeys: "{{ ansible_facts.device_links.ids.keys()|list }}"
+
+- debug:
+    var: item
+  loop: "{{ diskkeys }}"
+
+
+- name: Append volume group
+  set_fact:
+    alldisk: "{{ alldisks + [ item ] }}"
+  loop: "{{ diskkeys }}"
+
+
+- debug: var=alldisks

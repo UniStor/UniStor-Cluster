@@ -1,0 +1,10 @@
+---
+
+- name: all facts
+  ansible.builtin.debug:
+    var: ansible_facts
+
+
+- name: get all disks as dict
+  ansible.builtin.debug:
+    var: ansible_facts.device_links.ids
