@@ -1,0 +1,33 @@
+---
+
+- name: all facts
+  ansible.builtin.debug:
+    var: ansible_facts
+
+
+- name: get all devices as dict
+  ansible.builtin.debug:
+    var: ansible_facts.device_links.ids
+
+- name: Is a dictionary?
+  debug:
+    msg: "{{ (ansible_facts.device_links.ids is mapping)|
+             ternary('is a dictionary', 'is something else') }}"
+
+- name: default
+  debug:
+    var: "ansible_facts.device_links.ids.sda"
+
+- name: default print
+  debug:
+    msg: "{{ansible_facts.device_links.ids.sda}}"
+
+- name: from var
+  debug:
+    var: ansible_facts.device_links.ids[testdisk]
+
+- name: from var print
+  debug:
+    msg: "{{ansible_facts.device_links.ids[testdisk]}}"
+
+# https://xbuba.com/questions/37280242

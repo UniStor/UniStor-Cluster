@@ -1,0 +1,20 @@
+---
+- name: List of all devices
+  block:
+  - name: get list of keys
+    set_fact:
+      diskkeys: "{{ ansible_facts.device_links.ids.keys()|list }}"
+
+
+  - name: create List of devices
+    set_fact:
+      all: "{{ all + [ item ] }}"
+    loop: "{{ diskkeys }}"
+
+- name: Only raw disks
+  block:
+
+  - name: List all disk ids
+    ansible.builtin.debug:
+      var: "ansible_facts.device_links.ids[item]"
+    loop: "{{ diskkeys }}"
