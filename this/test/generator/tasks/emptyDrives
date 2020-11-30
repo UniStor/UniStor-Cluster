@@ -1,5 +1,5 @@
 ---
-- name: Test Generator
+- name: Test
   debug:
     var: ansible_facts.devices[item]
   loop: "{{emptyDrives}}"

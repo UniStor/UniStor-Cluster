@@ -1,3 +1,6 @@
 ---
-all: []
 emptyDrives: []
+
+partPrefix: uni
+vgPrefix: stor
+poolPrefix: pool

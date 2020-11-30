@@ -1,22 +1,24 @@
 ---
 
-- name: get all devices as dict
+- block:
+  - name: default
+    debug:
+      var: "ansible_facts.devices.sda"
+
+  - name: get disk
+    debug:
+      var: "ansible_facts.devices[testdisk]"
+
+
+  - name: get disk type
+    debug:
+      var: "ansible_facts.devices.sda.vendor"
+
+  - name: get disk type var
+    debug:
+      var: "ansible_facts.devices[testdisk].vendor"
+  when: false
+
+- name: get all devices
   debug:
     var: ansible_facts.devices
-
-- name: default
-  debug:
-    var: "ansible_facts.devices.sda"
-
-- name: get disk
-  debug:
-    var: "ansible_facts.devices[testdisk]"
-
-
-- name: get disk type
-  debug:
-    var: "ansible_facts.devices.sda.vendor"
-
-- name: get disk type var
-  debug:
-    var: "ansible_facts.devices[testdisk].vendor"
