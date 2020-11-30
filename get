@@ -2,4 +2,4 @@
 - hosts: local
   gather_facts: yes
   roles:
-  - role: test/get
+  - role: test/generator

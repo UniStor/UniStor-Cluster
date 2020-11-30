@@ -17,7 +17,6 @@
   debug:
     var: "ansible_facts.devices.sda.vendor"
 
-
 - name: get disk type var
   debug:
     var: "ansible_facts.devices[testdisk].vendor"

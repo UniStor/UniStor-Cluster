@@ -1,4 +1,0 @@
-# works!
-https://stackoverflow.com/questions/37280242/ansible-rendering-nested-variables-in-a-template
-
-Your debug task should not have the . on invocation:

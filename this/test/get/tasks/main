@@ -1,4 +1,0 @@
----
-# - include_tasks: devices
-# - include_tasks: all
-- include_tasks: ATA or USB3

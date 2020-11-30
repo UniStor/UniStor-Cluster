@@ -1,0 +1,22 @@
+# works!
+https://stackoverflow.com/questions/37280242/ansible-rendering-nested-variables-in-a-template
+mirror: https://xbuba.com/questions/37280242
+
+Your debug task should not have the . on invocation:
+
+```
+- vars:
+    testdisk: sda
+
+- name: default
+  debug:
+    var: "ansible_facts.device_links.ids.sda"
+
+- name: from var
+  debug:
+    var: ansible_facts.device_links.ids[testdisk]
+
+- name: from var msg
+  debug:
+    msg: "{{ansible_facts.device_links.ids[testdisk]}}"
+```

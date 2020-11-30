@@ -1,5 +1,0 @@
----
-testdisk: 'sdb'
-testdiskb: 'sdc'
-
-type: "USB3.0"
