@@ -11,7 +11,3 @@
   set_fact:
     unistorVg: "{{ unistorVg + item.split('-pool')[:-1] }}"
   loop: "{{ all | unique | replace('--','-') }}"
-
-# - name: Final VGs
-#   debug:
-#     msg: "{{ unistorVg }}"

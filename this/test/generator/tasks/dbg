@@ -4,7 +4,11 @@
     var: ansible_facts.devices[item]
   loop: "{{emptyDrives}}"
 
-- name: ids
+- name: Empty Drives
   debug:
     var: "ansible_facts.devices[item].links.ids[0]"
   loop: "{{emptyDrives}}"
+
+- name: UniStor VGs
+  debug:
+    msg: "{{ unistorVg }}"
