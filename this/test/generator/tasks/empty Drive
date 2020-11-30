@@ -1,5 +1,5 @@
 ---
-- name: Test
+- name: devices
   debug:
     var: ansible_facts.devices[item]
   loop: "{{emptyDrives}}"

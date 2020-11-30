@@ -1,1 +1,23 @@
 https://www.shellhacks.com/ansible-when-variable-is-defined-exists-empty-true/
+
+
+
+# Check if Ansible variable is empty:
+```
+tasks:
+- fail: msg="The variable 'bar' is empty"
+  when: bar|length == 0
+
+- shell: echo "The variable 'foo' is not empty: '{{ foo }}'"
+  when: foo|length > 0
+```
+
+# Check if Ansible variable is defined and not empty:
+```
+tasks:
+- shell: echo "The variable 'foo' is defined and not empty"
+  when: (foo is defined) and (foo|length > 0)
+
+- fail: msg="The variable 'bar' is not defined or empty"
+  when: (bar is not defined) or (bar|length == 0)
+```

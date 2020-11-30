@@ -1,5 +1,0 @@
----
-
-- name: Read device information (always use unit when probing)
-  parted: device=/dev/sdb unit=MiB
-  register: sdb_info

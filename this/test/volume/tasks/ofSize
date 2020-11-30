@@ -1,0 +1,7 @@
+---
+- name: Create a thin volume of 10g
+  lvol:
+    vg: stor{{ vg_num }}
+    lv: vm
+    thinpool: unipool
+    size: 10g

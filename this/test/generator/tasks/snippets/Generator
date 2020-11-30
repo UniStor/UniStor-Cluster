@@ -1,0 +1,40 @@
+---
+- name: get disk
+  debug:
+    var: "ansible_facts.devices.sda"
+
+- name: get device from Variable
+  debug:
+    var: "ansible_facts.devices[testdisk].vendor"
+
+#--------------------------------------------------
+- name: All Drives
+  debug:
+    var: "ansible_facts.devices[item]"
+  when: (ansible_facts.devices[item].vendor is defined and ansible_facts.devices[item].vendor != None )
+  loop: "{{ ansible_facts.device_links.ids.keys()|list }}"
+
+#--------------------------------------------------
+
+- name: Used Drives
+  debug:
+    var: ansible_facts.devices[item].partitions
+  when: (ansible_facts.devices[item].vendor is defined and ansible_facts.devices[item].vendor != None ) and (ansible_facts.devices[item].partitions|length != 0)
+  loop: "{{ ansible_facts.device_links.ids.keys()|list }}"
+
+
+- name: Unpartitioned Drives!
+  debug:
+    var: ansible_facts.devices[item]
+  when: (ansible_facts.devices[item].vendor is defined and ansible_facts.devices[item].vendor != None ) and (ansible_facts.devices[item].partitions|length == 0)
+  loop: "{{ ansible_facts.device_links.ids.keys()|list }}"
+
+#--------------------------------------------------
+
+- name: Generators
+  block:
+  - name: Generator Unpartitioned Drives
+    set_fact:
+      all: "{{ all + [ item ] }}"
+    when: (ansible_facts.devices[item].vendor is defined and ansible_facts.devices[item].vendor != None ) and (ansible_facts.devices[item].partitions|length == 0)
+    loop: "{{ ansible_facts.device_links.ids.keys()|list }}"

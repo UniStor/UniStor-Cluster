@@ -1,3 +1,2 @@
 ---
-# - include_tasks: devices
-- include_tasks: emptyDrives
+# - include_tasks: empty Drive

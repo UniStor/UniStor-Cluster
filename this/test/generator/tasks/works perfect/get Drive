@@ -1,13 +1,13 @@
 ---
-- block:
-  - name: Unpartitioned Drives!
-    debug:
-      var: ansible_facts.devices[item]
-    when: (ansible_facts.devices[item].vendor is defined and ansible_facts.devices[item].vendor != None ) and (ansible_facts.devices[item].partitions|length == 0)
-    loop: "{{ ansible_facts.device_links.ids.keys()|list }}"
-  when: false
 
-- name: Generator - Unpartitioned Drives
+# - name: Unpartitioned Drives
+#   debug:
+#     var: ansible_facts.devices[item]
+#   when: (ansible_facts.devices[item].vendor is defined and ansible_facts.devices[item].vendor != None ) and (ansible_facts.devices[item].partitions|length == 0)
+#   loop: "{{ ansible_facts.device_links.ids.keys()|list }}"
+
+
+- name: Generate Unpartitioned Drives
   set_fact:
     all: "{{ all + [ item ] }}"
   when: (ansible_facts.devices[item].vendor is defined and ansible_facts.devices[item].vendor != None ) and (ansible_facts.devices[item].partitions|length == 0)
