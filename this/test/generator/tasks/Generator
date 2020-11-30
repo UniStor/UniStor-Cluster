@@ -1,5 +1,5 @@
 ---
-- name: Generator
+- name: Generators
   block:
 
   - name: All Drives
@@ -8,7 +8,8 @@
     when: (ansible_facts.devices[item].vendor is defined and ansible_facts.devices[item].vendor != None )
     loop: "{{ ansible_facts.device_links.ids.keys()|list }}"
 
-  - name: Existing Drives
+
+  - name: Used Drives
     debug:
       var: ansible_facts.devices[item]
     when: (ansible_facts.devices[item].vendor is defined and ansible_facts.devices[item].vendor != None ) and (ansible_facts.devices[item].partitions|length != 0)
@@ -21,20 +22,9 @@
     when: (ansible_facts.devices[item].vendor is defined and ansible_facts.devices[item].vendor != None ) and (ansible_facts.devices[item].partitions|length == 0)
     loop: "{{ ansible_facts.device_links.ids.keys()|list }}"
 
-  - name: Generator - Unpartitioned Drives
+
+  - name: Generator Unpartitioned Drives
     set_fact:
       all: "{{ all + [ item ] }}"
     when: (ansible_facts.devices[item].vendor is defined and ansible_facts.devices[item].vendor != None ) and (ansible_facts.devices[item].partitions|length == 0)
     loop: "{{ ansible_facts.device_links.ids.keys()|list }}"
-
-- name: Test
-  block:
-  - name: Test Generator
-    debug:
-      var: ansible_facts.devices[item].vendor
-    loop: "{{all}}"
-
-  - name: /dev/disk/by-id only
-    debug:
-      var: "ansible_facts.devices[item].links.ids[0]"
-    loop: "{{all}}"

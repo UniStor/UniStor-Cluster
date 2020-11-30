@@ -1,5 +1,0 @@
----
-all: []
-drives: []
-
-type: ["ATA", "USB3.0"]

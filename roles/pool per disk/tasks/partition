@@ -1,0 +1,11 @@
+---
+
+- name: Partition all empty drives for UniStor
+  parted:
+    label: gpt
+    device: "/dev/disk/by-id/{{ansible_facts.devices[item].links.ids[0]}}"
+    name: "part.{{ansible_facts.devices[item].links.ids[0]}}"
+    number: 1
+    flags: [ lvm ]
+    state: present
+  loop: "{{emptyDrives}}"

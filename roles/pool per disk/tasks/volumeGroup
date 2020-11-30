@@ -1,0 +1,9 @@
+---
+
+- name: Create volume groups
+  lvg:
+    vg: "stor.{{ansible_facts.devices[item].links.ids[0]}}"
+    pvs: "/dev/disk/by-id/{{ansible_facts.devices[item].links.ids[0]}}-part1"
+    pesize: "{{ extent_size }}"
+    pv_options: '-Z y'
+  loop: "{{emptyDrives}}"

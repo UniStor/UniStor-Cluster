@@ -1,4 +1,2 @@
 ---
-# - include_tasks: all
-# - include_tasks: devices
-- include_tasks: Generator
+- include_tasks: test
