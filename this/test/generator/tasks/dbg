@@ -1,8 +1,8 @@
 ---
-- name: devices
-  debug:
-    var: ansible_facts.devices[item]
-  loop: "{{emptyDrives}}"
+# - name: devices
+#   debug:
+#     var: ansible_facts.devices[item]
+#   loop: "{{emptyDrives}}"
 
 - name: Empty Drives
   debug:

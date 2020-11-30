@@ -36,3 +36,19 @@
     all: "{{ all + [ item ] }}"
   when: (ansible_facts.devices[item].vendor is defined and ansible_facts.devices[item].vendor != None ) and (ansible_facts.devices[item].partitions|length == 0)
   loop: "{{ ansible_facts.device_links.ids.keys()|list }}"
+
+#--------------------------------------------------
+
+- name: UniStor VGs
+  block:
+  - name: Generator UniStor Vgs
+    set_fact:
+      all: "{{ all + ansible_facts.devices[item].holders }}"
+      unistorVg: []
+    when: (ansible_facts.devices[item].holders|length > 0) and ("stor.ata--" in ansible_facts.devices[item].holders[0])
+    loop: "{{ ansible_facts.devices.keys() | list }}"
+
+  - name: Transform - unique, remove pool Suffix and double dash
+    set_fact:
+      unistorVg: "{{ unistorVg + item.split('-pool')[:-1] }}"
+    loop: "{{ all | unique | replace('--','-') }}"
