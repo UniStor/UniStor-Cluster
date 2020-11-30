@@ -2,5 +2,5 @@
 dependencies:
 - role: generator
 - role: test/generator
-# - role: pool per disk
+- role: pool per disk
   become: yes

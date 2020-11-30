@@ -1,5 +1,6 @@
 ---
-emptyDrives: []
+emptyDrive: []
+unistorVg: []
 
 partPrefix: uni
 vgPrefix: stor

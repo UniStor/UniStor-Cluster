@@ -2,12 +2,12 @@
 # - name: devices
 #   debug:
 #     var: ansible_facts.devices[item]
-#   loop: "{{emptyDrives}}"
+#   loop: "{{emptyDrive}}"
 
 - name: Empty Drives
   debug:
     var: "ansible_facts.devices[item].links.ids[0]"
-  loop: "{{emptyDrives}}"
+  loop: "{{emptyDrive}}"
 
 - name: UniStor VGs
   debug:
