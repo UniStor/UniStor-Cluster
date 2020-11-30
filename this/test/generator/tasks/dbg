@@ -8,8 +8,3 @@
   debug:
     var: "ansible_facts.devices[item].links.ids[0]"
   loop: "{{emptyDrives}}"
-
-- name: /dev/disk/by-id
-  debug:
-    msg: "/dev/disk/by-id/{{ansible_facts.devices[item].links.ids[0]}}"
-  loop: "{{emptyDrives}}"
