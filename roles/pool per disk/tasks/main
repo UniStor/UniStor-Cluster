@@ -5,3 +5,6 @@
 
 - name: One Volume group per disk
   include_tasks: volumeGroup
+
+- name: One Thin Pool per disk
+  include_tasks: thinPool

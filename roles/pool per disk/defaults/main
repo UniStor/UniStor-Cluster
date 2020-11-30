@@ -1,2 +1,3 @@
 ---
-extent_size: '32'   # Megabytes
+thinExtentSize: '32'   # Megabytes
+poolName: ""  # Default is poolPrefix only! This can be Overridden
