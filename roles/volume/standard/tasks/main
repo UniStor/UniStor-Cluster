@@ -1,0 +1,19 @@
+---
+# - name: Create volume per device
+#   lvol:
+#     vg: "{{item}}"
+#     thinpool: pool
+#     lv: "bt.{{n}}"
+#     size: '95%FREE'
+#   loop: "{{unistorVg}}"
+#   loop_control:
+#     index_var: n
+#   when: false
+
+
+- name: debug
+  debug:
+    msg: "in: {{n}} at {{item}}/pool"
+  loop: "{{unistorVg}}"
+  loop_control:
+    index_var: n

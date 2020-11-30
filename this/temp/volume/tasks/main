@@ -1,7 +1,0 @@
----
-- name: Create a thin volume temp
-  lvol:
-    vg: '{{default_vg}}'
-    lv: 'test1'
-    size: '100%FREE'
-  become: yes

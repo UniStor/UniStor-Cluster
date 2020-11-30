@@ -44,11 +44,17 @@
   - name: Generator UniStor Vgs
     set_fact:
       all: "{{ all + ansible_facts.devices[item].holders }}"
+      clean: []
       unistorVg: []
     when: (ansible_facts.devices[item].holders|length > 0) and ("stor.ata--" in ansible_facts.devices[item].holders[0])
     loop: "{{ ansible_facts.devices.keys() | list }}"
 
-  - name: Transform - unique, remove pool Suffix and double dash
+  - name: Transform - remove pool Suffix and double dash
     set_fact:
-      unistorVg: "{{ unistorVg + item.split('-pool')[:-1] }}"
-    loop: "{{ all | unique | replace('--','-') }}"
+      clean: "{{ clean + item.split('-pool')[:-1] }}"
+    loop: "{{ all | replace('--','-') }}"
+
+  - name: Unique
+    set_fact:
+      unistorVg: "{{ unistorVg + [item] }}"
+    loop: "{{ clean  | unique }}"
