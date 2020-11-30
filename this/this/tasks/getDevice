@@ -14,7 +14,20 @@
 - name: Only raw disks
   block:
 
-  - name: List all disk ids
-    ansible.builtin.debug:
-      var: "ansible_facts.device_links.ids[item]"
+  - name: get full device info
+    debug:
+      var: ansible_facts.devices[item]
+    loop: "{{ diskkeys }}"
+
+  - name: get only internal drives
+    debug:
+      var: ansible_facts.devices[item]
+    loop: "{{ diskkeys }}"
+    # when: "ansible_facts.devices[item].vendor" == 'ATA'
+
+
+  - name: try
+    debug:
+      var: ansible_facts.devices[item].vendor
+    when: ansible_facts.devices[item].vendor == "ATA"
     loop: "{{ diskkeys }}"

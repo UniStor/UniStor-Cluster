@@ -1,18 +1,8 @@
 ---
 
-- name: all facts
-  ansible.builtin.debug:
-    var: ansible_facts
-
-
-- name: get all devices as dict
-  ansible.builtin.debug:
-    var: ansible_facts.device_links.ids
-
-- name: Is a dictionary?
+- name: get all device_links as dict
   debug:
-    msg: "{{ (ansible_facts.device_links.ids is mapping)|
-             ternary('is a dictionary', 'is something else') }}"
+    var: ansible_facts.device_links.ids
 
 - name: default
   debug:
