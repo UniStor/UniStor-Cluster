@@ -1,7 +1,8 @@
 ---
 dependencies:
-- role: generator
-- role: test/generator
+# - role: generator
+# - role: test/generator
+- role: gen
 # - role: pool per disk
 #   become: true
 # - role: volume/standard

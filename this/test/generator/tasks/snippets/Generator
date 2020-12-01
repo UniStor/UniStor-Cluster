@@ -22,16 +22,21 @@
   when: (ansible_facts.devices[item].vendor is defined and ansible_facts.devices[item].vendor != None ) and (ansible_facts.devices[item].partitions|length != 0)
   loop: "{{ ansible_facts.device_links.ids.keys()|list }}"
 
+- name: First Partition
+  debug:
+    var: ansible_facts.devices[item].partitions | first
+  when: (ansible_facts.devices[item].vendor is defined and ansible_facts.devices[item].vendor != None ) and (ansible_facts.devices[item].partitions|length != 0)
+  loop: "{{ ansible_facts.device_links.ids.keys()|list }}"
 
-- name: Unpartitioned Drives!
+#--------------------------------------------------
+- name: Empty Drives
   debug:
     var: ansible_facts.devices[item]
   when: (ansible_facts.devices[item].vendor is defined and ansible_facts.devices[item].vendor != None ) and (ansible_facts.devices[item].partitions|length == 0)
   loop: "{{ ansible_facts.device_links.ids.keys()|list }}"
 
 
-#--------------------------------------------------
-- name: Generator Unpartitioned Drives
+- name: Generator Empty Drives
   set_fact:
     all: "{{ all + [ item ] }}"
   when: (ansible_facts.devices[item].vendor is defined and ansible_facts.devices[item].vendor != None ) and (ansible_facts.devices[item].partitions|length == 0)
