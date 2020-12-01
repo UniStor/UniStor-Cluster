@@ -44,7 +44,7 @@
 
 #--------------------------------------------------
 
-- name: UniStor VGs
+- name: Unique - UniStor VGs
   block:
   - name: Generator UniStor Vgs
     set_fact:

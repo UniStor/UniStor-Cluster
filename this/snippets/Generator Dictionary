@@ -1,0 +1,26 @@
+---
+#from: www.middlewareinventory.com/blog/ansible-dict/
+
+- name: My VGs Dictionary
+  set_fact:
+      my: "{{ my | combine ({ item :
+        {
+          'id': item,
+          'lvmName': ansible_facts.devices[item].holders | first,
+          'size': ansible_facts.devices[item].size,
+        }
+        }) }}"
+  when: (ansible_facts.devices[item].virtual == 1) and (ansible_facts.devices[item].holders|length > 0)
+  loop: "{{ ansible_facts.devices.keys()|list }}"
+
+
+-  name: print Element
+   debug:
+     msg: "{{my['dm-4']}}"  #for hyphen in key
+
+-  name: Element
+   debug:
+     var: "my['dm-4']"  #for hyphen in key
+
+
+#--------------------------------------------------

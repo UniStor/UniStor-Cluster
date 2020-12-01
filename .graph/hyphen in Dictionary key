@@ -1,0 +1,19 @@
+Problem: Some keys in ansible_facts contains hyphens.
+
+For example:
+"ansible_facts.device_links.ids.sda"  Works, but
+"ansible_facts.device_links.ids.dm-0" Doesn't work!
+this makes it impossible to select 'dm-0'
+
+Solution:
+- https://stackoverflow.com/questions/55574776/anible-playbook-with-json-loop-does-not-work-if-json-key-has-a-dash-in-the-name
+
+```
+- name: Entry with hyphen
+  debug:
+    msg: "{{ansible_facts.device_links.ids['dm-0']}}"
+```
+
+
+Sch:
+-https://www.google.com/search?q=ansible+dash+in+dictionary+key
