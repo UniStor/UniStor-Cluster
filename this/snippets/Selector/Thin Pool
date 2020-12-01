@@ -1,0 +1,15 @@
+---
+- name: All Thin Pool - Data & Meta
+  debug:
+    # var: "[item]"
+    # var: "ansible_facts.devices[item]"
+    msg: "{{item}} is {{ansible_facts.devices[item].holders}} and {{ansible_facts.devices[item].size}}"
+  when: (
+    (ansible_facts.devices[item].virtual == 1) and
+    (ansible_facts.devices[item].partitions|length == 0) and
+    (
+      ansible_facts.devices[item].links.masters|length == 1
+    )
+    )
+  loop: "{{ ansible_facts.devices.keys()|list }}"
+  #Skips Thin volumes! drives, and loop files

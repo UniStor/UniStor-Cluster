@@ -1,0 +1,11 @@
+---
+- name: Logical Volumes
+  debug:
+    # var: "ansible_facts.devices[item]"
+    var: "ansible_facts.devices[item].links.ids"
+  when: (
+    (ansible_facts.devices[item].virtual == 1) and
+    (ansible_facts.devices[item].partitions|length == 0) and
+    (ansible_facts.devices[item].links.ids|length > 0)
+    )
+  loop: "{{ ansible_facts.devices.keys()|list }}"

@@ -1,0 +1,9 @@
+---
+
+- name: All Drives with LVM PhysicalVolumes
+  debug:
+    var: "[item]"
+    # var: "ansible_facts.devices[item]"
+  when: (ansible_facts.devices[item].virtual == 1)
+    and (ansible_facts.devices[item].partitions|length > 0)
+  loop: "{{ ansible_facts.devices.keys()|list }}"
