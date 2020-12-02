@@ -1,0 +1,24 @@
+---
+# Works Flawlessly!
+
+- name: Short
+  shell: vgs --reportformat json
+  register: vgs
+
+- name: Create unistor from JSON
+  set_fact:
+    # Dictionary with some value
+    unistor: "{{ (vgs.stdout | from_json).report[0] }}"
+
+
+- name: Display
+  debug:
+    var: unistor.vg[0]
+
+- name: Display Element
+  debug:
+    var: unistor.vg[0]
+
+- name: Display VG Name
+  debug:
+    var: unistor.vg[0].vg_name
