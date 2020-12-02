@@ -1,5 +1,5 @@
 ---
-# get LVM Reports
+# get LVM Report
 - name: Physical Volume
   shell: lvs --reportformat json
   register: lvs

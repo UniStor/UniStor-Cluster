@@ -1,8 +1,10 @@
 ---
 dependencies:
-- role: generator
+# - role: generator/Unistor
+#   become: true
+- role: generator/orphan
   become: true
-- role: test/generator
+# - role: test/generator
 
 # - role: pool per disk
 #   become: true

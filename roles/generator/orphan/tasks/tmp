@@ -1,0 +1,25 @@
+---
+
+- debug:
+    var: ansible_facts
+
+# Example on how to read info and reuse it in subsequent task
+- name: Read device information (always use unit when probing)
+  parted: device=/dev/sdc unit=MiB
+  register: sdc_info
+  become: true
+
+- name: sdc info
+  debug:
+    var: sdc_info
+
+
+# Example on how to read info and reuse it in subsequent task
+- name: Read device information (always use unit when probing)
+  parted: device=/dev/sdb unit=MiB
+  register: sdb_info
+  become: true
+
+- name: sdb info
+  debug:
+    var: sdb_info

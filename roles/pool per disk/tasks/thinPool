@@ -1,5 +1,4 @@
 ---
-
 - name: Create pool
   lvol:
     vg: "{{vgPrefix}}.{{ansible_facts.devices[item].links.ids[0]}}"
