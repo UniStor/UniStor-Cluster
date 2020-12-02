@@ -1,0 +1,12 @@
+---
+- name: Drive with Partition List
+  set_fact:
+   drivelist: "{{ drivelist + [item] }}"
+  when: (ansible_facts.devices[item].vendor is defined and ansible_facts.devices[item].vendor != None )
+  loop: "{{ ansible_facts.devices.keys()|list }}"
+  # loop: "{{ ansible_facts.device_links.ids.keys()|list }}"  # Alt
+
+
+- name: All Drives
+  debug:
+    var: "drives"

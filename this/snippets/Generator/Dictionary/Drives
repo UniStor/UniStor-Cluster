@@ -1,12 +1,11 @@
 ---
-# - include_tasks: lvm partition
 
-- name: All Drives
+- name: Generator - Drive with Partition
   set_fact:
     drive: "{{ drive | combine({item :
       {
         'name' : item,
-        'partitions' : ansible_facts.devices[item].partitions
+        'partition' : ansible_facts.devices[item].partitions
       }
       }) }}"
   when: (ansible_facts.devices[item].vendor is defined and ansible_facts.devices[item].vendor != None )
@@ -16,8 +15,7 @@
   debug:
     var: "drive"
 
-- name: Try
+- name: Loop
   debug:
     var: "drive[item]"
   loop: "{{drive.keys() | list}}"
-    # var: "(drive | first).partitions"

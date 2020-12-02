@@ -1,0 +1,34 @@
+---
+# - include_tasks: lvm partition
+
+- name: All Drives
+  set_fact:
+    drive: "{{ drive | combine({item :
+      {
+        'name' : item,
+        'partition' : ansible_facts.devices[item].partitions
+      }
+      }) }}"
+  when: (ansible_facts.devices[item].vendor is defined and ansible_facts.devices[item].vendor != None )
+  loop: "{{ ansible_facts.devices.keys()|list }}"
+
+- name: All Drives
+  debug:
+    var: "drive"
+
+# - name: Drives Info
+#   debug:
+#     var: "ansible_facts.devices[item]"
+#   when: (ansible_facts.devices[item].vendor is defined and ansible_facts.devices[item].vendor != None )
+#   loop: "{{ ansible_facts.devices.keys()|list }}"
+
+
+
+# - name: Read device information (always use unit when probing)
+#   parted: device=/dev/sdb unit=MiB
+#   register: sdb_info
+#   become: true
+#
+# - name: sdb info
+#   debug:
+#     var: sdb_info
