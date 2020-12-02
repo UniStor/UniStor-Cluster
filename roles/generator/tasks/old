@@ -1,6 +1,6 @@
 ---
 
-- name: UniStor VGs
+- name: obsolete
   block:
   - name: Generator UniStor Vgs
     set_fact:
