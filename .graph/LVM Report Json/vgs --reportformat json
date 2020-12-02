@@ -1,0 +1,2 @@
+# Works!
+sudo vgs --reportformat json
