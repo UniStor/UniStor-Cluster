@@ -10,7 +10,7 @@ Quote: In the following playbook example, we are going to create a dictionary na
 
     - name: Create and Add items to dictionary
       set_fact:
-          userdata: "{{ userdata | default({}) | combine ({ item.key : item.value }) }}"
+        userdata: "{{ userdata | default({}) | combine ({ item.key : item.value }) }}"
       with_items:
         - { 'key': 'Name' , 'value': 'SaravAK'}
         - { 'key': 'Email' , 'value': 'sarav@gritfy.com'}
@@ -29,7 +29,7 @@ Similar concept applies to combining dictionaries. Here we assign an empty dicti
 ```
 - name: Add Cisco and Airsta devices to the list
   set_fact:
-   devices: "{{ devices + [item] }}"
+    devices: "{{ devices + [item] }}"
   with_items:
    - "{{ cisco }}"
 ```

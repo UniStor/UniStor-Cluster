@@ -10,12 +10,3 @@
       }) }}"
   when: (ansible_facts.devices[item].vendor is defined and ansible_facts.devices[item].vendor != None )
   loop: "{{ ansible_facts.devices.keys()|list }}"
-
-
-# Loop
-- name: Drive info
-  debug:
-    msg: "{{ item.key }}"
-  loop: "{{ drive | dict2items }}"
-  loop_control:
-    label: "{{ item.key }}"

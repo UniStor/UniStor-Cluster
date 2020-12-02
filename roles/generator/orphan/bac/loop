@@ -1,0 +1,26 @@
+---
+- name: Part info
+  debug:
+    var: "item"
+    var: "partition.results['item'].disk.dev"
+  loop: "{{ partition.results }}"
+  loop_control:
+    label: "none"
+
+# - name: Part info
+#   debug:
+#     var: "partition"
+#     var: "[item.key].disk.dev"
+#     var: "item"
+#   loop: "{{ partition.results }}"
+
+  # with_items:
+  #   - partition.results
+    # var: partition.results[0].flags[0]
+
+
+- name: All info
+  debug:
+    var: "(partition.results[0].item.value.partitions.sdb1.links.ids[0])"
+    # var: "partition.results[0]"
+    # var: "partition.results[0].partitions[0].flags"

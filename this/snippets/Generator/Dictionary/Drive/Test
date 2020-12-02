@@ -1,0 +1,9 @@
+---
+
+# Loop
+- name: Test
+  debug:
+    msg: "{{ item.key }}"
+  loop: "{{ drive | dict2items }}"
+  loop_control:
+    label: "{{ item.key }}"

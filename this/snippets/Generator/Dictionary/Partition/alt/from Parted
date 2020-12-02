@@ -1,5 +1,5 @@
 ---
-- name: Parted from Drive dict
+- name: Partitions from Parted
   parted:
     device: "/dev/{{item.key}}"
     unit: MiB
@@ -16,3 +16,16 @@
     var: "partition.results[0].disk.dev"
     var: "partition.results[0].partitions"
     var: "partition.results[0].partitions[0].flags"
+    var: "(partition.results[0].item.value.partitions.sdb1.links.ids[0])"
+
+
+# Is a partition is for LVM?
+- name: get Partition Flags
+  debug:
+    msg:
+      - "{{partition.results[i].disk.dev}}1"
+      - "{{partition.results[i].partitions[0].flags}}"
+  loop: "{{ partition.results }}"
+  loop_control:
+    index_var: i
+    label: ""
