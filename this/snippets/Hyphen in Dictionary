@@ -1,0 +1,8 @@
+---
+-  name: print Element
+   debug:
+     msg: "{{my['dm-4']}}"  #for hyphen in key
+
+-  name: Element
+   debug:
+     var: "my['dm-4']"  #for hyphen in key

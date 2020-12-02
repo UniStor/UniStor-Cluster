@@ -1,0 +1,4 @@
+---
+- name: Single DM
+  debug:
+    var: "ansible_facts.devices['dm-11']"

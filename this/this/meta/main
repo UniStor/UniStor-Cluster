@@ -3,6 +3,7 @@ dependencies:
 # - role: generator
 # - role: test/generator
 - role: try
+  become: true
 # - role: pool per disk
 #   become: true
 # - role: volume/standard
