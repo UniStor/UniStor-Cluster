@@ -1,6 +1,7 @@
 
 https://www.middlewareinventory.com/blog/ansible-dict/
 
+# Dictionary Example
 Quote: In the following playbook example, we are going to create a dictionary named userdata using the default filter and adding elements to it using the combine filter
 ```
 - name: Dictionary playbook example
@@ -21,6 +22,14 @@ Quote: In the following playbook example, we are going to create a dictionary na
 ```
 
 
-# Example 2
+# List Example
 https://ttl255.com/ansible-appending-to-lists-and-dictionaries/
 Similar concept applies to combining dictionaries. Here we assign an empty dictionary to the newly initiated variable. In the assignment expression we will need to use filter "combine" to add new key-value pairs to the existing dictionary.
+
+```
+- name: Add Cisco and Airsta devices to the list
+  set_fact:
+   devices: "{{ devices + [item] }}"
+  with_items:
+   - "{{ cisco }}"
+```

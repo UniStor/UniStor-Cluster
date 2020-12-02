@@ -1,6 +1,11 @@
 ---
-# - include_tasks: lvm partition
-
+- name: All Drives
+  debug:
+    var: "[item]"
+    # var: "ansible_facts.devices[item]"
+  when: (ansible_facts.devices[item].vendor is defined and ansible_facts.devices[item].vendor != None )
+  loop: "{{ ansible_facts.devices.keys()|list }}"
+  # loop: "{{ ansible_facts.device_links.ids.keys()|list }}"  # Alt
 
 
 - name: set All Drives
@@ -10,15 +15,7 @@
   loop: "{{ ansible_facts.devices.keys()|list }}"
   # loop: "{{ ansible_facts.device_links.ids.keys()|list }}"  # Alt
 
+
 - name: All Drives
   debug:
     var: "drives"
-
-# - name: Read device information (always use unit when probing)
-#   parted: device=/dev/sdb unit=MiB
-#   register: sdb_info
-#   become: true
-#
-# - name: sdb info
-#   debug:
-#     var: sdb_info
