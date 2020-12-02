@@ -1,0 +1,8 @@
+---
+
+- name: Short
+  shell: vgs --reportformat json
+  register: vgShort
+
+- debug:
+    var: vgShort.stdout
