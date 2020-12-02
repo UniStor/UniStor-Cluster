@@ -1,6 +1,7 @@
 ---
+# Works Flawlessly!
 
-- name: Short
+- name: Volume Group
   shell: vgs --reportformat json
   register: vgs
 
@@ -10,9 +11,13 @@
     unistor: "{{ (vgs.stdout | from_json).report[0] }}"
 
 
-# - name: Display Element
-#   debug:
-#     var: unistor.vg[0]
+- name: Display
+  debug:
+    var: unistor.vg
+
+- name: Display Element
+  debug:
+    var: unistor.vg[0]
 
 - name: Display VG Name
   debug:

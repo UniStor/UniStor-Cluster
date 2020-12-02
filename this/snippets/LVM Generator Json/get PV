@@ -1,0 +1,16 @@
+---
+# Works Flawlessly!
+
+- name: Physical Volume
+  shell: pvs --reportformat json
+  register: pvs
+
+- name: Create unistor from JSON
+  set_fact:
+    # Dictionary with some value
+    unistor: "{{ (pvs.stdout | from_json).report[0] }}"
+
+
+- name: Display
+  debug:
+    var: unistor.pv

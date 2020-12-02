@@ -1,0 +1,16 @@
+---
+# Works Flawlessly!
+
+- name: Logical Volume
+  shell: lvs --reportformat json
+  register: lvs
+
+- name: Create unistor from JSON
+  set_fact:
+    # Dictionary with some value
+    unistor: "{{ (lvs.stdout | from_json).report[0] }}"
+
+
+- name: Display
+  debug:
+    var: unistor.lv
