@@ -1,6 +1,6 @@
 ---
 
-- name: Generator - Drive with Partition
+- name: All Drives with Partition
   set_fact:
     drive: "{{ drive | combine({item :
       {
@@ -11,11 +11,11 @@
   when: (ansible_facts.devices[item].vendor is defined and ansible_facts.devices[item].vendor != None )
   loop: "{{ ansible_facts.devices.keys()|list }}"
 
-- name: All Drives
-  debug:
-    var: "drive"
 
-- name: Loop
+# Loop
+- name: Drive info
   debug:
-    var: "drive[item]"
-  loop: "{{drive.keys() | list}}"
+    msg: "{{ item.key }}"
+  loop: "{{ drive | dict2items }}"
+  loop_control:
+    label: "{{ item.key }}"

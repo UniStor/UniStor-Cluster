@@ -1,0 +1,8 @@
+---
+
+- name: Selector
+  debug:
+    var: "partition.results[0]"
+    var: "partition.results[0].disk.dev"
+    var: "partition.results[0].partitions"
+    var: "partition.results[0].partitions[0].flags"
