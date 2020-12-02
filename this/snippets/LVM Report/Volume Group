@@ -13,7 +13,7 @@
 
 - name: Display
   debug:
-    var: unistor.vg[0]
+    var: unistor.vg
 
 - name: Display Element
   debug:
