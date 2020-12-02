@@ -1,4 +1,4 @@
 ---
 - include_tasks: Empty drive
-- include_tasks: LVM Report
+- include_tasks: All in One
 # - include_tasks: old

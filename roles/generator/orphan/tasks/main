@@ -1,2 +1,32 @@
 ---
-- include_tasks: lvm partition
+# - include_tasks: lvm partition
+
+# - name: All Drives with LVM PhysicalVolumes
+#   debug:
+#     # var: "[item]"
+#     var: "ansible_facts.devices[item]"
+#   when: (ansible_facts.devices[item].virtual == 1)
+#     and (ansible_facts.devices[item].partitions|length > 0)
+#   loop: "{{ ansible_facts.devices.keys()|list }}"
+
+
+- name: Drives with Partitions
+  set_fact:
+    drives: "{{ drives + [ansible_facts.devices[item].partitions] }}"
+  when: (ansible_facts.devices[item].virtual == 1)
+    and (ansible_facts.devices[item].partitions|length > 0)
+  loop: "{{ ansible_facts.devices.keys()|list }}"
+
+- name: test
+  debug:
+    var: drives
+
+
+# - name: Read device information (always use unit when probing)
+#   parted: device=/dev/sdb unit=MiB
+#   register: sdb_info
+#   become: true
+#
+# - name: sdb info
+#   debug:
+#     var: sdb_info
