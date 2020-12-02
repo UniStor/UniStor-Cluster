@@ -1,0 +1,38 @@
+---
+# get LVM Reports
+- name: Physical Volume
+  shell: lvs --reportformat json
+  register: lvs
+
+- name: Physical Volume
+  shell: pvs --reportformat json
+  register: pvs
+
+- name: Volume Group
+  shell: vgs --reportformat json
+  register: vgs
+
+
+# Parse JSON
+- name: Create from JSON
+  set_fact:
+    lvsJson: "{{ (lvs.stdout | from_json).report[0].lv }}"
+    vgsJson: "{{ (vgs.stdout | from_json).report[0].vg }}"
+    pvsJson: "{{ (pvs.stdout | from_json).report[0].pv }}"
+
+
+# Generate
+- name: Create, Append LVs
+  set_fact:
+    unistor: "{{ unistor | default({}) | combine (
+    { 'lv' : lvsJson } ) }}"
+
+- name: Append PVs
+  set_fact:
+    unistor: "{{ unistor | combine (
+    { 'pv' : pvsJson } ) }}"
+
+- name: Append VGs
+  set_fact:
+    unistor: "{{ unistor | combine (
+    { 'vg' : vgsJson } ) }}"

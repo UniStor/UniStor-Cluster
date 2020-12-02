@@ -1,0 +1,25 @@
+---
+# from Shell
+- name: Physical Volume
+  shell: pvs --reportformat json
+  register: pvs
+
+- name: Volume Group
+  shell: vgs --reportformat json
+  register: vgs
+
+
+# Parse JSON
+- name: Create VG from JSON
+  set_fact:
+    vgs: "{{ (vgs.stdout | from_json).report[0].vg }}"
+
+- name: Create PV from JSON
+  set_fact:
+    pvs: "{{ (pvs.stdout | from_json).report[0].pv }}"
+
+
+# Generate Unistor
+- name: allinone
+  set_fact:
+      allinone: "{{ allinone | default({}) | combine ({ 'pv' : pvs }) }}"

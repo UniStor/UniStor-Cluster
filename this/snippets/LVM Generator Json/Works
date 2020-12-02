@@ -1,0 +1,34 @@
+---
+# from Shell
+- name: Physical Volume
+  shell: pvs --reportformat json
+  register: pvs
+
+- name: Volume Group
+  shell: vgs --reportformat json
+  register: vgs
+
+
+# Parse JSON
+- name: Create VG from JSON
+  set_fact:
+    vgsTmp: "{{ (vgs.stdout | from_json).report[0].vg }}"
+
+- name: Create PV from JSON
+  set_fact:
+    pvsTmp: "{{ (pvs.stdout | from_json).report[0].pv }}"
+
+
+- name: Works as Dict!
+  set_fact:
+    unistor: "{{ unistor | default({}) | combine (
+    { 'vg' : vgsTmp } ) }}"
+
+
+- name: Display
+  debug:
+    var: unistor
+
+- name: Display vg
+  debug:
+    var: unistor.vg

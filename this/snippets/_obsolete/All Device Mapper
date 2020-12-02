@@ -3,7 +3,8 @@
 - name: any VG
   debug:
     var: "ansible_facts.devices[item]"
-  when: (ansible_facts.devices[item].virtual == 1) and (ansible_facts.devices[item].holders|length > 0)
+  when: (ansible_facts.devices[item].virtual == 1) and
+        (ansible_facts.devices[item].holders|length > 0)
   loop: "{{ ansible_facts.devices.keys()|list }}"
 
 
