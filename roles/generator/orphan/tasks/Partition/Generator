@@ -1,19 +1,38 @@
 ---
 
-- name: Get LVM Partitions
+# works ---------------------------------
+- name: Generate LVM Partition list
   set_fact:
-    drive: "{{ lvmpartition | combine({item :
-      {
-        'partition' : ( thisDrive.disk.dev )
-        'is_LVM_Partition' : ( "lvm" in item.flags ),
-      }
-      }) }}"
+    partTest: "{{ partTest + [item] }}"
   loop: '{{ thisDrive.partitions }}'
   loop_control:
     label: '{{ item.num }}'
-  when: ( "lvm" in item.flags )
 
+# ---------------------------------
 
-- name: Generate LVM Partitions list
+- name: Generate LVM Partition list of dicts
   set_fact:
-    parttry: "{{ parttry + [item] }}"
+    lvmPartition: "{{ lvmPartition +
+    [
+      {
+        'driveLeter' : this.key,
+        'disk' : thisDrive.disk.dev,
+        'partitionNumber' : item.num,
+        'id' : 'this.value.partitions'
+      }
+    ] }}"
+  loop: '{{ thisDrive.partitions }}'
+  loop_control:
+    label: '{{ item.num }}'
+
+
+# todo _____________________________
+
+- name: temp helper
+  set_fact:
+    driveindex: '{{this.key}}1'
+
+- name: Specific Partition
+  debug:
+    var: this.value.partitions.sda1
+    var: "this.value.partitions.{{driveindex}}"
