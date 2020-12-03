@@ -1,0 +1,19 @@
+---
+
+- name: Generate Partition List
+  set_fact:
+    partitionList: "{{ partitionList +
+    [
+      {
+        'disk' : thisDrive.disk.dev,
+        'driveLeter' : this.key,
+        'flags' : item.flags,
+        'id' : this.value.partitions[this.key + item.num|string].links.ids,
+        'partitionNum' : item.num,
+        'this' : thisDrive.disk.dev + item.num|string,
+        'size' : this.value.partitions[this.key + item.num|string].size
+      }
+    ] }}"
+  loop: '{{ thisDrive.partitions }}'
+  loop_control:
+    label: '{{ item.num }}'

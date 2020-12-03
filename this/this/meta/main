@@ -2,12 +2,12 @@
 dependencies:
 # - role: generator/Unistor
 #   become: true
-- role: generator/Partition
+- role: Generator/Partition
   become: true
 # - role: test/generator
 
-# - role: pool per disk
+# - role: Pool per disk
 #   become: true
 
-# - role: volume/standard
+# - role: Volume/standard
 #   become: true

@@ -1,9 +1,9 @@
 ---
 - name: Generate Drive
   include_tasks: Drive
-# - include_tasks: Contains LVM
 
-- name: Loop over Drive to get all partitions
+
+- name: Loop and Generate partitionList
   include_tasks: Loop/Partition
   loop: "{{ drive | dict2items }}"
   loop_control:
