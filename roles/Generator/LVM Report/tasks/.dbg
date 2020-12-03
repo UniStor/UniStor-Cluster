@@ -1,17 +1,8 @@
 ---
-# Test
-- name: Display
-  debug:
-    var: unistor
 
-- name: Display LV
+- name: Test
   debug:
-    var: unistor.lv
-
-- name: Display PV
-  debug:
-    var: unistor.pv
-
-- name: Display VG
-  debug:
-    var: unistor.vg
+    # var: lv
+    var: allLvm
+    # var: allLvm.lv
+    # var: allLvm.lv[2]

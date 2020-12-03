@@ -1,38 +1,24 @@
 ---
-# get LVM Report
-- name: Physical Volume
-  shell: lvs --reportformat json
-  register: lvs
 
-- name: Physical Volume
-  shell: pvs --reportformat json
-  register: pvs
+- name: get LVM Json Report
+  shell: '{{ item }}'
+  register: Lvm
+  loop:
+    - 'lvs --reportformat json'
+    - 'pvs --reportformat json'
+    - 'vgs --reportformat json'
 
-- name: Volume Group
-  shell: vgs --reportformat json
-  register: vgs
-
-
-# Parse JSON
-- name: Create from JSON
+- name: Parse JSON
   set_fact:
-    lvsJson: "{{ (lvs.stdout | from_json).report[0].lv }}"
-    vgsJson: "{{ (vgs.stdout | from_json).report[0].vg }}"
-    pvsJson: "{{ (pvs.stdout | from_json).report[0].pv }}"
+    lv: '{{ (Lvm.results[0].stdout | from_json).report[0].lv }}'
+    pv: '{{ (Lvm.results[1].stdout | from_json).report[0].pv }}'
+    vg: '{{ (Lvm.results[2].stdout | from_json).report[0].vg }}'
 
 
-# Generate
-- name: Create, Append LVs
+- name: Create 'allLvm' Dictionary
   set_fact:
-    unistor: "{{ unistor | default({}) | combine (
-    { 'lv' : lvsJson } ) }}"
-
-- name: Append PVs
-  set_fact:
-    unistor: "{{ unistor | combine (
-    { 'pv' : pvsJson } ) }}"
-
-- name: Append VGs
-  set_fact:
-    unistor: "{{ unistor | combine (
-    { 'vg' : vgsJson } ) }}"
+    allLvm: "{{ allLvm | default({}) | combine (
+      { 'lv' : lv },
+      { 'pv' : pv },
+      { 'vg' : vg },
+    )}}"
