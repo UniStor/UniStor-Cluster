@@ -12,5 +12,5 @@
 
 
 
-- include_tasks: Loop/Partition
+- include_tasks: Partition/Loop
   loop: "{{ drive | dict2items }}"
