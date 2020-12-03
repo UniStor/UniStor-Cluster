@@ -1,0 +1,9 @@
+---
+
+# - name: Is Everything working
+#   debug:
+#     var: partitionList
+
+# - name: Size
+#   debug:
+#     var: ansible_facts.devices

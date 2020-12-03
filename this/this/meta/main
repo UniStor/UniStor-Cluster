@@ -2,7 +2,7 @@
 dependencies:
 # - role: generator/Unistor
 #   become: true
-- role: generator/orphan
+- role: generator/Partition
   become: true
 # - role: test/generator
 

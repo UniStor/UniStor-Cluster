@@ -2,5 +2,5 @@
 drive: {}
 
 # from Partition/Loop
-partTest: []
+partitionList: []
 lvmPartition: []

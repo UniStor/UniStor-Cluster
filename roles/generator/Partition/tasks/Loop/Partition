@@ -1,0 +1,20 @@
+---
+
+- name: Get parted
+  parted:
+    device: "/dev/{{this.key}}"
+    unit: MiB
+  register: thisDrive
+  become: true
+
+
+- name: get size of Partition
+  include_tasks: Loop/Size
+
+# - name: run Generator Nested as well
+#   include_tasks: Loop/Generator
+
+
+# - name: Test
+#   debug:
+#     var: 'this.key'

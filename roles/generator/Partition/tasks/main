@@ -1,0 +1,14 @@
+---
+- name: Generate Drive
+  include_tasks: Drive
+# - include_tasks: Contains LVM
+
+- name: Loop over Drive to get all partitions
+  include_tasks: Loop/Partition
+  loop: "{{ drive | dict2items }}"
+  loop_control:
+    loop_var: this
+
+
+- name: outside loop!
+  include_tasks: Dbg

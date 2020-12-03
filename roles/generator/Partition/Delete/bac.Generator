@@ -1,12 +1,12 @@
 ---
 
-# works ---------------------------------
-- name: Generate LVM Partition list
-  set_fact:
-    partTest: "{{ partTest + [item] }}"
-  loop: '{{ thisDrive.partitions }}'
-  loop_control:
-    label: '{{ item.num }}'
+# works, Delete  ---------------------------------
+# - name: Generate LVM Partition list
+#   set_fact:
+#     partTest: "{{ partTest + [item] }}"
+#   loop: '{{ thisDrive.partitions }}'
+#   loop_control:
+#     label: '{{ item.num }}'
 
 # ---------------------------------
 
