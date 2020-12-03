@@ -1,10 +1,13 @@
 ---
 dependencies:
-# - role: generator/Unistor
+- role: Generator/Empty Drive
+
+# - role: Generator/Partition
 #   become: true
-- role: Generator/Partition
-  become: true
-# - role: test/generator
+# - role: Generator/LVM Report
+#   become: true
+
+- role: test/generator
 
 # - role: Pool per disk
 #   become: true

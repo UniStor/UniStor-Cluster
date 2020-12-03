@@ -1,17 +1,9 @@
 ---
-- name: get disk
-  debug:
-    var: "ansible_facts.devices.sda"
-
-- name: get device from Variable
-  debug:
-    var: "ansible_facts.devices[testdisk].vendor"
-
-#--------------------------------------------------
 - name: All Drives
   debug:
     var: "ansible_facts.devices[item]"
-  when: (ansible_facts.devices[item].vendor is defined and ansible_facts.devices[item].vendor != None )
+  when: ansible_facts.devices[item].vendor is defined
+    and ansible_facts.devices[item].vendor != None
   loop: "{{ ansible_facts.device_links.ids.keys()|list }}"
 
 #--------------------------------------------------
@@ -19,28 +11,19 @@
 - name: Used Drives
   debug:
     var: ansible_facts.devices[item].partitions
-  when: (ansible_facts.devices[item].vendor is defined and ansible_facts.devices[item].vendor != None ) and (ansible_facts.devices[item].partitions|length != 0)
-  loop: "{{ ansible_facts.device_links.ids.keys()|list }}"
-
-- name: First Partition
-  debug:
-    var: ansible_facts.devices[item].partitions | first
-  when: (ansible_facts.devices[item].vendor is defined and ansible_facts.devices[item].vendor != None ) and (ansible_facts.devices[item].partitions|length != 0)
-  loop: "{{ ansible_facts.device_links.ids.keys()|list }}"
-
-#--------------------------------------------------
-- name: Empty Drives
-  debug:
-    var: ansible_facts.devices[item]
-  when: (ansible_facts.devices[item].vendor is defined and ansible_facts.devices[item].vendor != None ) and (ansible_facts.devices[item].partitions|length == 0)
+    # var: ansible_facts.devices[item].partitions | first
+  when: (ansible_facts.devices[item].vendor is defined and ansible_facts.devices[item].vendor != None )
+    and (ansible_facts.devices[item].partitions|length != 0)
   loop: "{{ ansible_facts.device_links.ids.keys()|list }}"
 
 
-- name: Generator Empty Drives
+- name: Used Drive with a Partition
   set_fact:
-    all: "{{ all + [ item ] }}"
-  when: (ansible_facts.devices[item].vendor is defined and ansible_facts.devices[item].vendor != None ) and (ansible_facts.devices[item].partitions|length == 0)
-  loop: "{{ ansible_facts.device_links.ids.keys()|list }}"
+    usedDrive: "{{ drivelist + [item] }}"
+  when: ansible_facts.devices[item].vendor is defined
+    and ansible_facts.devices[item].vendor != None
+  loop: "{{ ansible_facts.devices.keys()|list }}"
+
 
 #--------------------------------------------------
 

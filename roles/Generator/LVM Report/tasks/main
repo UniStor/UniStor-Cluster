@@ -1,4 +1,2 @@
 ---
-- include_tasks: Empty drive
 - include_tasks: All in One
-# - include_tasks: old

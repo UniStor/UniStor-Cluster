@@ -3,7 +3,7 @@
   lvol:
     vg: "{{item}}"
     thinpool: pool
-    lv: "bt.{{n}}"
+    lv: "btrfs.{{n}}"
     size: 100%FREE
   loop: "{{unistorVg}}"
   loop_control:
