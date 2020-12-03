@@ -2,11 +2,12 @@
 
 - include_tasks: Drive/Drive
 
+
 - name: All Partitions from Drive Facts!
   debug:
     msg:
-      - "{{ item.key }}"
-      - "{{ item.value.partitions }}"
+      # - "{{ item.key }}"
+      # - "{{ item.value.partitions }}"
       - "{{ item.value.partitions.keys() }}"
   loop: "{{ drive | dict2items }}"
   loop_control:

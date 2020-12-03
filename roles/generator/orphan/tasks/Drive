@@ -9,3 +9,8 @@
       }) }}"
   when: (ansible_facts.devices[item].vendor is defined and ansible_facts.devices[item].vendor != None )
   loop: "{{ ansible_facts.devices.keys()|list }}"
+
+
+
+- include_tasks: Loop/Partition
+  loop: "{{ drive | dict2items }}"

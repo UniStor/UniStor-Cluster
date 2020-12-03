@@ -1,14 +1,5 @@
 ---
 
-- name: All Partitions
-  debug:
-    msg:
-      - "{{ item.value.partitions.keys() }}"
-  loop: "{{ drive | dict2items }}"
-  loop_control:
-    index_var: i
-    label: ""
-
 
 - name: Flatten Partition List
   set_fact:

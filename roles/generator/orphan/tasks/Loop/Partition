@@ -1,0 +1,7 @@
+---
+
+- debug:
+    msg: "this {{item.key}}"
+
+# - debug:
+#     var: "item.value"

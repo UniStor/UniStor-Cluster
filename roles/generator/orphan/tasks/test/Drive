@@ -1,15 +1,13 @@
 ---
 
-# Loop
-- name: Test loop
+- name: Test
   debug:
     msg: "{{ item.key }}"
   loop: "{{ drive | dict2items }}"
   loop_control:
     label: "{{ item.key }}"
 
-
-- name: Test item
+- name: Test
   debug:
     var: "drive[item]"
   with_items: "{{ drive.keys() | list }}"

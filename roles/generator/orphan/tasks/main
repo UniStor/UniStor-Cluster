@@ -1,6 +1,5 @@
 ---
 - include_tasks: Drive
-# - include_tasks: Partition
 # - include_tasks: Contains LVM
 
-- include_tasks: try
+# - include_tasks: try
