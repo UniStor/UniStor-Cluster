@@ -1,2 +1,7 @@
 ---
-- include_tasks: All in One
+# - include_tasks: All in One
+
+- include_tasks: altern in One
+
+- include_tasks: .dbg
+  when: dbg

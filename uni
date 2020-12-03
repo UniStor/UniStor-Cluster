@@ -3,8 +3,11 @@
   gather_facts: yes
   roles:
 
+  - role: test/testrun
+    tags: test, t
+
   - role: this
-    tags: init
+    tags: this, never
 
   - role: test/clean
     tags: clean, never

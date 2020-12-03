@@ -10,5 +10,5 @@
     loop_var: this
 
 
-- name: outside loop!
-  include_tasks: Dbg
+- include_tasks: .dbg
+  when: dbg
