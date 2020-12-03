@@ -9,8 +9,8 @@ dependencies:
 
 - role: test/generator
 
-# - role: Pool per disk
-#   become: true
+- role: Pool per disk
+  become: true
 
 # - role: Volume/standard
 #   become: true

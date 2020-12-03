@@ -1,8 +1,7 @@
 ---
-emptyDrive: []
-unistorVg: []
 all: []
 
+unistorVg: []
 partPrefix: uni
 vgPrefix: stor
 poolPrefix: pool
