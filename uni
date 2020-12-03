@@ -2,7 +2,12 @@
 - hosts: local
   gather_facts: yes
   roles:
+
   - role: this
+    tags: init
+
+  - role: test/clean
+    tags: clean, never
 
   # - role: pool per disk
   #   become: true

@@ -7,8 +7,6 @@ dependencies:
 # - role: Generator/LVM Report
 #   become: true
 
-- role: test/generator
-
 - role: Pool per disk
   become: true
 
