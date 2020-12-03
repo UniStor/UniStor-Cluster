@@ -1,0 +1,19 @@
+---
+- name: Generate LVM Partition Dict
+  set_fact:
+    drive: "{{ partitionWithLvm | combine({item :
+      {
+        'partition' : 'one',
+        'hasLvm' : 'two',
+      }
+      }) }}"
+  loop: '{{ thisDrive.partitions }}'
+  loop_control:
+    label: '{{ item.num }}'
+
+# ( "lvm" in item.flags )
+# ( thisDrive.disk.dev )
+
+- name: Test.
+  debug:
+    var: partitionWithLvm

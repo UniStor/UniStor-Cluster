@@ -1,0 +1,19 @@
+---
+
+- name: Get LVM Partitions
+  set_fact:
+    drive: "{{ lvmpartition | combine({item :
+      {
+        'partition' : ( thisDrive.disk.dev )
+        'is_LVM_Partition' : ( "lvm" in item.flags ),
+      }
+      }) }}"
+  loop: '{{ thisDrive.partitions }}'
+  loop_control:
+    label: '{{ item.num }}'
+  when: ( "lvm" in item.flags )
+
+
+- name: Generate LVM Partitions list
+  set_fact:
+    parttry: "{{ parttry + [item] }}"

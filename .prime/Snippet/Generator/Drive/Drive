@@ -12,5 +12,8 @@
   loop: "{{ ansible_facts.devices.keys()|list }}"
 
 
-- include_tasks: Partition/Loop
+- name: Get partition info
+  include_tasks: Partition/Loop
   loop: "{{ drive | dict2items }}"
+  loop_control:
+    loop_var: this
