@@ -9,7 +9,7 @@
 
 
 - name: get size of Partition
-  include_tasks: Loop/Size
+  include_tasks: Loop/Size & Id
 
 # - name: run Generator Nested as well
 #   include_tasks: Loop/Generator
