@@ -8,7 +8,7 @@
   become: true
 
 
-- name: add to Partition List
+- name: all Partitions
   set_fact:
     allPartitions: "{{ allPartitions | default([]) +
   [
@@ -28,7 +28,7 @@
 
 
 
-- name: LVM Partitions
+- name: LVM Partition
   set_fact:
     lvmPartition: "{{ lvmPartition | default([]) +
     [
