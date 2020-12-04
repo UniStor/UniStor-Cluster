@@ -8,10 +8,10 @@
   become: true
 
 
-- name: all Partitions
+- name: add to allPartition List
   set_fact:
-    allPartitions: "{{ allPartitions | default([]) +
-  [
+    allPartition: "{{ allPartition | default([]) +
+    [
       {
         'disk' : thisDrive.disk.dev,
         'driveLetter' : this.key,
@@ -28,7 +28,7 @@
 
 
 
-- name: LVM Partition
+- name: add to lvmPartition List
   set_fact:
     lvmPartition: "{{ lvmPartition | default([]) +
     [
