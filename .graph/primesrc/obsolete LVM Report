@@ -4,7 +4,7 @@
   block:
   - name: Generator UniStor Vgs
     set_fact:
-      all: "{{ all + ansible_facts.devices[item].holders }}"
+      all: "{{ all | default([]) + ansible_facts.devices[item].holders }}"
       clean: []
       unistorVg: []
     when: (ansible_facts.devices[item].holders|length > 0) and ("stor.ata--" in ansible_facts.devices[item].holders[0])

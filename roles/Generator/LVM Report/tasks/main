@@ -1,5 +1,29 @@
 ---
-- include_tasks: All in One
+- name: get LVM Json Report
+  shell: '{{ item }}'
+  register: Lvm
+  loop:
+    - 'lvs --reportformat json'
+    - 'pvs --reportformat json'
+    - 'vgs --reportformat json'
+  become: true
+
+
+- name: Parse JSON
+  set_fact:
+    lv: '{{ (Lvm.results[0].stdout | from_json).report[0].lv }}'
+    pv: '{{ (Lvm.results[1].stdout | from_json).report[0].pv }}'
+    vg: '{{ (Lvm.results[2].stdout | from_json).report[0].vg }}'
+
+
+- name: Create 'allLvm' Dictionary
+  set_fact:
+    allLvm: "{{ allLvm | default({}) | combine (
+      { 'lv' : lv },
+      { 'pv' : pv },
+      { 'vg' : vg },
+    )}}"
+
 
 - include_tasks: .dbg
   when: dbg

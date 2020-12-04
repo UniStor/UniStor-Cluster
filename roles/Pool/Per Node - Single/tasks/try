@@ -1,1 +1,15 @@
 ---
+
+- name: create pvsList
+  set_fact:
+    pvsList: "{{ pvsList | default([]) +
+    [
+      item.id[0]
+    ]}}"
+  loop: '{{ lvmPartition }}'
+  loop_control:
+    label: ''
+
+- name: Test pvsList
+  debug:
+    var: pvsList

@@ -4,6 +4,6 @@
   lvg:
     vg: "{{vgPrefix}}.{{ansible_facts.devices[item].links.ids[0]}}"
     pvs: "/dev/disk/by-id/{{ansible_facts.devices[item].links.ids[0]}}-part1"
-    pesize: "{{ thinExtentSize }}"
+    pesize: "{{ physicalExtentSize }}"
     pv_options: '-Z y'
   loop: "{{emptyDrive}}"
