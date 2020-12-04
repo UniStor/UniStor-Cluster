@@ -10,13 +10,6 @@ dependencies:
 
 - role: Pool/Per disk - Multi
   when: not singlePool
-  become: true
 
 - role: Pool/Per Node - Single
   when: singlePool
-  become: true
-
-# - role: Generator/Partition
-#   become: true
-# - role: Generator/LVM Report
-#   become: true

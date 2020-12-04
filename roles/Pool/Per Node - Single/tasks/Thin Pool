@@ -5,3 +5,4 @@
     thinpool: "{{poolPrefix}}{{poolName}}"
     size: '100%FREE'
   loop: "{{emptyDrive}}"
+  become: true
