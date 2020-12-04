@@ -3,5 +3,5 @@
 - name: Empty Drives
   debug:
     var: ansible_facts.devices[item]
-    var: ansible_facts.devices[item].links.ids[0]
+    # var: ansible_facts.devices[item].links.ids[0]
   loop: "{{emptyDrive}}"

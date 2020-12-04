@@ -1,8 +1,5 @@
 ---
 
-- name: Partition all empty drives
-  include_tasks: Partition
-
 - name: One Volume group per disk
   include_tasks: Volume Group
 

@@ -1,16 +1,18 @@
 ---
 - hosts: local
   gather_facts: yes
+  pre_tasks:
+    - set_fact:
+        dbg: true
+      tags: dbg, never
+
   roles:
 
-  - role: test/testrun
-    tags: test, t
-
   - role: this
-    tags: this, never
+    tags: this, always
+
+  - role: test/testrun
+    tags: ['t', 'test', 'never']
 
   - role: test/clean
-    tags: clean, never
-
-  # - role: pool per disk
-  #   become: true
+    tags: ['never', 'clean']
