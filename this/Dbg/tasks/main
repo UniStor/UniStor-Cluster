@@ -1,0 +1,8 @@
+---
+- name: Include Debug
+  include_vars:
+    file: dbg
+
+# - name: Test this
+#   debug:
+#     msg: 'Include Debug variables! {{dbg}}'
