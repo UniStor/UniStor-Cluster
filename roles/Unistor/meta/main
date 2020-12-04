@@ -2,9 +2,9 @@
 dependencies:
 - role: Generator/Drive
 # must be run After Generator/Drive
-- role: shared/Partition
+- role: Pool/Partition
 
-# must be run After shared/Partiton to detect changes!
+# must be run After Pool/Partiton to detect changes!
 - role: Generator/Parted
 - role: Generator/LVM Report
 
