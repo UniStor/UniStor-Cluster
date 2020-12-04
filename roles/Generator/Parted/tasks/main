@@ -1,0 +1,12 @@
+---
+
+- name: Loop, run for each Drive
+  include_tasks: Loop/Parted
+  loop: "{{ allDrives | dict2items }}"
+  loop_control:
+    loop_var: this
+
+# - include_tasks: alt
+
+- include_tasks: .dbg
+  when: dbg

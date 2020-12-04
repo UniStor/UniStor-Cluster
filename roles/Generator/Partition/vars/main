@@ -1,6 +1,0 @@
----
-drive: {}
-
-# from Partition/Loop
-partitionList: []
-lvmPartition: []

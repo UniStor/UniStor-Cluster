@@ -1,4 +1,0 @@
----
-- name: Test Generator
-  debug:
-    var: partitionList

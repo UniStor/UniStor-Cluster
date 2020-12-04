@@ -1,5 +1,0 @@
----
-- include_tasks: Empty drive
-
-- include_tasks: .dbg
-  when: dbg

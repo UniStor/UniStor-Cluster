@@ -1,0 +1,44 @@
+---
+
+- name: get Parted for drive - {{this.key}}
+  parted:
+    device: "/dev/{{this.key}}"
+    unit: MiB
+  register: thisDrive
+  become: true
+
+
+- name: add to Partition List
+  set_fact:
+    allPartitions: "{{ allPartitions | default([]) +
+  [
+      {
+        'disk' : thisDrive.disk.dev,
+        'driveLetter' : this.key,
+        'flags' : item.flags,
+        'id' : this.value.partitions[this.key + item.num|string].links.ids,
+        'partitionNum' : item.num,
+        'this' : thisDrive.disk.dev + item.num|string,
+        'size' : this.value.partitions[this.key + item.num|string].size
+      }
+    ] }}"
+  loop: '{{ thisDrive.partitions }}'
+  loop_control:
+    label: '{{this.key}}{{ item.num }}'
+
+
+
+- name: LVM Partitions
+  set_fact:
+    lvmPartition: "{{ lvmPartition | default([]) +
+    [
+      {
+        'flags' : item.flags,
+        'id' : this.value.partitions[this.key + item.num|string].links.ids,
+        'size' : this.value.partitions[this.key + item.num|string].size
+      }
+    ] }}"
+  loop: '{{ thisDrive.partitions }}'
+  when: ( "lvm" in item.flags )
+  loop_control:
+    label: '{{this.key}}{{ item.num }}'

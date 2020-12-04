@@ -1,6 +1,10 @@
 ---
 dependencies:
-- role: Generator/Empty Drive
+- role: Generator/Drive
+
+- role: shared/Partition
+# must be run After shared/Partiton to detect changes!
+- role: Generator/Parted
 
 - role: Pool/Per disk - Multi
   when: not singlePool

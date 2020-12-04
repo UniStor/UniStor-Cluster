@@ -1,0 +1,17 @@
+---
+
+- name: Get LVM formatted partition
+  debug:
+    var: item.flags[0]
+  loop: '{{ allPartitions }}'
+  when: item.flags[0] == 'lvm'
+  loop_control:
+    label: ''
+
+- name: Get Other partitions
+  debug:
+    var: item.flags[0]
+  loop: '{{ allPartitions }}'
+  when: item.flags[0] != 'lvm'
+  loop_control:
+    label: ''

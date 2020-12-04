@@ -1,7 +1,11 @@
 ---
-- name: All Drives
+- name: for Reruns, reset
   set_fact:
-    drive: "{{ drive | combine({item :
+    allDrives: {}
+
+- name: get All Drives
+  set_fact:
+    allDrives: "{{ allDrives | combine({item :
       {
         'name' : item,
         'partitions' : ansible_facts.devices[item].partitions

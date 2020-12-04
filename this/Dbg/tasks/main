@@ -1,5 +1,5 @@
 ---
-- name: Include Debug
+- name: set debug
   include_vars:
     file: dbg
 
