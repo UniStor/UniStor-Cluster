@@ -1,7 +1,9 @@
 ---
 
-- name: Empty Drives
+- name: Debug
   debug:
-    var: ansible_facts.devices[item]
-    # var: ansible_facts.devices[item].links.ids[0]
+    # var: ansible_facts.devices[item]
+    msg:
+      - "{{ ansible_facts.devices[item].links.ids[0] }}"
+      - "{{ ansible_facts.devices[item].size }}"
   loop: "{{emptyDrive}}"
