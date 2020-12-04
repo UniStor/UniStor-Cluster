@@ -2,11 +2,11 @@
 dependencies:
 - role: Generator/Empty Drive
 
-- role: Pool per disk - Multi
+- role: Pool/Per disk - Multi
   when: not singlePool
   become: true
 
-- role: Pool per Node - Single
+- role: Pool/Per Node - Single
   when: singlePool
   become: true
 
