@@ -4,8 +4,16 @@
   lvg:
     vg: "{{unistor.vgName}}"
     pvs: "{{unistor.pvs}}"
+  become: true
+  when: (unistor.pesize | length == 0)
+
+- name: custom pesize - Create One Large Volume Group...
+  lvg:
+    vg: "{{unistor.vgName}}"
+    pvs: "{{unistor.pvs}}"
     pesize: "{{ unistor.pesize }}"
   become: true
+  when: (unistor.pesize | length > 0)
 
 # Future Options:
     # pv_options: '-Z y'

@@ -4,4 +4,4 @@ poolID: 0
 partPrefix: uni
 vgPrefix: stor
 poolPrefix: pool
-physicalExtentSize: '128k'
+physicalExtentSize: ''
