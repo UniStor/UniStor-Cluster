@@ -4,12 +4,7 @@
     vg: "{{item}}"
     thinpool: pool
     lv: "btrfs.{{n}}"
-    size: 100%FREE
+    size: 100%PV
   loop: "{{unistorVg}}"
   loop_control:
     index_var: n
-
-# - name: debug
-#   debug:
-#     msg: "vol on {{item}}"
-#   loop: "{{unistorVg}}"

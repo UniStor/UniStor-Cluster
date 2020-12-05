@@ -5,5 +5,7 @@ vgPrefix: stor
 poolPrefix: pool
 physicalExtentSize: ''
 
-# This allows separate tiered pools for HD, SSD, & NVMe's!
-poolTier: ''
+# This allows separate tiered pools for 'HD, SSD, & NVMe'
+# Also combination tiers like 'coin' for mining with all space!
+# default is 'my'
+poolTier: 'my'
