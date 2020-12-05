@@ -1,0 +1,11 @@
+---
+- hosts: localhost
+  vars_prompt:
+  - name: confirm
+    prompt: Do you really want to Delete ALL traces of Unistore on this node??! Type 'yes true' if so.
+    private: no
+
+  tasks:
+  - name: Print a message
+    debug:
+      msg: "{{ confirm }} Cleanup all drives on {{ansible_host}} created by Unistor-Cluster!"

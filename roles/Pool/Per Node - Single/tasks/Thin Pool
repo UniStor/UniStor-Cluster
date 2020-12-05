@@ -1,7 +1,21 @@
 ---
+- name: get lvs
+  shell: 'lvs --reportformat json'
+  register: lv
+  become: true
+
+
+- name: Pool Exists?
+  set_fact:
+    poolExists: true
+  when: item.lv_name == unistor.poolName
+  loop: '{{ (lv.stdout | from_json).report[0].lv }}'
+
+
 - name: Create Pool
   lvol:
     vg: "{{unistor.vgName}}"
     thinpool: "{{unistor.poolName}}"
-    size: '100%FREE'
+    size: 100%PVS
+  when: not poolExists
   become: true

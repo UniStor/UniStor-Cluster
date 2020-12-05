@@ -1,7 +1,0 @@
----
-
-- name: a Volume group per disk
-  include_tasks: Volume Group
-
-- name: a Thin Pool per disk
-  include_tasks: Thin Pool

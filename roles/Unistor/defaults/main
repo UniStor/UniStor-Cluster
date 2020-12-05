@@ -1,7 +1,9 @@
 ---
 nodeID: 0
-poolID: 0
 partPrefix: uni
 vgPrefix: stor
 poolPrefix: pool
 physicalExtentSize: ''
+
+# This allows separate tiered pools for HD, SSD, & NVMe's!
+poolTier: ''

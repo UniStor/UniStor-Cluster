@@ -2,14 +2,12 @@
 - hosts: local
   gather_facts: yes
   roles:
-  - role: Dbg
+  - role: debug
     tags: d, never
 
   - role: this
     tags: this, d
 
-  # - role: test/testrun
-  #   tags: t, test, never
-  #
-  # - role: test/clean
-  #   tags: never, clean
+
+  - role: test/clean
+    tags: never, clean
