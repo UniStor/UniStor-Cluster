@@ -1,4 +1,4 @@
-#
+# Wiki
 https://unix.stackexchange.com/questions/150644/raiding-with-lvm-vs-mdraid-pros-and-cons
 
 # Recovery
