@@ -1,5 +1,6 @@
 ---
 nodeID: 0
+poolID: 0
 partPrefix: uni
 vgPrefix: stor
 poolPrefix: pool
