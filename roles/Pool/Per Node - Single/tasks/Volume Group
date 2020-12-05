@@ -1,13 +1,13 @@
 ---
 
-- name: Create One Large Volume Group containing All Drives
+- name: Create a Single Volume Group containing all Drives
   lvg:
     vg: "{{unistor.vgName}}"
     pvs: "{{unistor.pvs}}"
   become: true
   when: (unistor.pesize | length == 0)
 
-- name: custom pesize - Create One Large Volume Group...
+- name: custom pesize - Create a Single Volume Group...
   lvg:
     vg: "{{unistor.vgName}}"
     pvs: "{{unistor.pvs}}"

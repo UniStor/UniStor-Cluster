@@ -3,9 +3,5 @@
 - name: Single Volume group
   include_tasks: Volume Group
 
-# - name: Single Thin Pool
-#   include_tasks: Thin Pool
-
-- name: Try
-  debug:
-    var: unistor.pvs
+- name: Single Thin Pool
+  include_tasks: Thin Pool
