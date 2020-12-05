@@ -1,2 +1,10 @@
 ---
-- include_tasks: Partition Empty Drive
+- name: Partition all empty drives for UniStor
+  parted:
+    label: gpt
+    device: "/dev/disk/by-id/{{ansible_facts.devices[item].links.ids[0]}}"
+    name: "{{partPrefix}}.{{ansible_facts.devices[item].links.ids[0]}}"
+    number: 1
+    flags: [ lvm ]
+    state: present
+  loop: "{{emptyDrive}}"

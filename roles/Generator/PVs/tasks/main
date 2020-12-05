@@ -19,6 +19,8 @@
   loop_control:
     label: ''
 
-- name: use difference to Create PVs for Unistor
+
+- name: use difference to Set PVs for Unistor
   set_fact:
-    unistorPVs: 'allPVs | difference(excludePV)'
+    unistor: "{{ unistor | combine( { 'pvs' : allPVs | difference(excludePV) } ) }}"
+    # unistorPVs: '{{ allPVs | difference(excludePV) }}'

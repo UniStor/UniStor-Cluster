@@ -1,13 +1,11 @@
 ---
 
-# - name: Partition all empty drives
-#   include_tasks: Partition
+- name: Single Volume group
+  include_tasks: Volume Group
 
-# - name: Singular Volume group
-#   include_tasks: Volume Group
-#
-# - name: Singular Thin Pool
+# - name: Single Thin Pool
 #   include_tasks: Thin Pool
 
 - name: Try
-  include_tasks: try
+  debug:
+    var: unistor.pvs

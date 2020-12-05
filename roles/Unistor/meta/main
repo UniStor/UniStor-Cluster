@@ -1,11 +1,10 @@
 ---
 dependencies:
 - role: Generator/Drive
-# must be run After Generator/Drive
-# - role: Pool/Partition
+# - role: Pool/Partition  # must be After Generator/Drive
 
-# must be run After Pool/Partiton to detect changes!
-- role: Generator/PVs
+
+- role: Generator/PVs   # must be After Pool/Partiton to detect changes!
 
 # - role: Pool/Per disk - Multi
 #   when: not singlePool

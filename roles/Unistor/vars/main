@@ -1,0 +1,6 @@
+---
+unistor:
+  pesize: "{{physicalExtentSize}}"
+  poolName: "{{poolPrefix}}{{nodeID}}"  # Default is poolPrefix only! This can be Overridden
+  pvs: []
+  vgName: "{{partPrefix}}{{vgPrefix}}-node{{nodeID}}"

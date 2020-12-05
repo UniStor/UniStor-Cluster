@@ -1,9 +1,11 @@
 ---
 
-- name: Create One Large volume group with Every Drive
+- name: Create One Large Volume Group containing All Drives
   lvg:
-    vg: "{{partPrefix}}{{vgPrefix}}"
-    pvs: "/dev/disk/by-id/{{ansible_facts.devices[item].links.ids[0]}}-part1"
-    pesize: "{{ physicalExtentSize }}"
-    pv_options: '-Z y'
+    vg: "{{unistor.vgName}}"
+    pvs: "{{unistor.pvs}}"
+    pesize: "{{ unistor.pesize }}"
   become: true
+
+# Future Options:
+    # pv_options: '-Z y'
