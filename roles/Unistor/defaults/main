@@ -1,7 +1,11 @@
 ---
+id: 0
+
 partPrefix: uni
 vgPrefix: stor
 poolPrefix: pool
 physicalExtentSize: '32'   # Megabytes
 
-poolName: ""  # Default is poolPrefix only! This can be Overridden
+unistor:
+  vgName: "{{vgPrefix}}-node{{id}}"
+  poolName: ""  # Default is poolPrefix only! This can be Overridden

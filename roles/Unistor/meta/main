@@ -2,14 +2,13 @@
 dependencies:
 - role: Generator/Drive
 # must be run After Generator/Drive
-- role: Pool/Partition
+# - role: Pool/Partition
 
 # must be run After Pool/Partiton to detect changes!
-- role: Generator/Parted
-- role: Generator/LVM Report
+- role: Generator/PVs
 
-- role: Pool/Per disk - Multi
-  when: not singlePool
+# - role: Pool/Per disk - Multi
+#   when: not singlePool
 
 - role: Pool/Per Node - Single
   when: singlePool

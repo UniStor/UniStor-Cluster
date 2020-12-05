@@ -1,0 +1,24 @@
+---
+# Orphan: a Disk Partition with flags 'lvm' that is Not in any Volume Group.
+
+- name: get OS Managed PVs
+  set_fact:
+    excludePV: "{{ excludePV | default([]) + [item.pv_name]}}"
+  when: (item.vg_name | length > 0) and
+        (item.vg_name != unistor.vgName)
+  loop: '{{ lvmReport.pv }}'
+  loop_control:
+    label: ''
+  #// Allow Orphan PVs! These have no assoication. hence `|length > 0`
+
+
+- name: get all PVs
+  set_fact:
+    allPVs: "{{ allPVs | default([]) + [item.pv_name]}}"
+  loop: '{{ lvmFormattedPartition }}'
+  loop_control:
+    label: ''
+
+- name: use difference to Create PVs for Unistor
+  set_fact:
+    unistorPVs: 'allPVs | difference(excludePV)'

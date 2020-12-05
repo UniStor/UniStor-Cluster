@@ -1,8 +1,0 @@
----
-
-- name: Generate Empty Drive (unpartitioned)
-  set_fact:
-    emptyDrive: "{{ emptyDrive + [ item ] }}"
-  when: (ansible_facts.devices[item].vendor is defined and ansible_facts.devices[item].vendor != None )
-    and (ansible_facts.devices[item].partitions|length == 0)
-  loop: "{{ ansible_facts.device_links.ids.keys()|list }}"

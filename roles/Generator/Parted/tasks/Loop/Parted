@@ -8,17 +8,14 @@
   become: true
 
 
-- name: add to allPartition List
+- name: allPartition List
   set_fact:
     allPartition: "{{ allPartition | default([]) +
     [
       {
-        'disk' : thisDrive.disk.dev,
-        'driveLetter' : this.key,
         'flags' : item.flags,
         'id' : this.value.partitions[this.key + item.num|string].links.ids,
-        'partitionNum' : item.num,
-        'this' : thisDrive.disk.dev + item.num|string,
+        'pv_name' : thisDrive.disk.dev + item.num|string,
         'size' : this.value.partitions[this.key + item.num|string].size
       }
     ] }}"
@@ -28,13 +25,14 @@
 
 
 
-- name: add to lvmPartition List
+- name: lvmFormattedPartition List
   set_fact:
-    lvmPartition: "{{ lvmPartition | default([]) +
+    lvmFormattedPartition: "{{ lvmFormattedPartition | default([]) +
     [
       {
         'flags' : item.flags,
         'id' : this.value.partitions[this.key + item.num|string].links.ids,
+        'pv_name' : thisDrive.disk.dev + item.num|string,
         'size' : this.value.partitions[this.key + item.num|string].size
       }
     ] }}"
@@ -42,3 +40,8 @@
   when: ( "lvm" in item.flags )
   loop_control:
     label: '{{this.key}}{{ item.num }}'
+
+# Removed fields
+        # 'disk' : thisDrive.disk.dev,
+        # 'driveLetter' : this.key,
+        # 'partitionNum' : item.num,

@@ -1,0 +1,4 @@
+---
+dependencies:
+- role: Generator/Parted
+- role: Generator/LVM Report

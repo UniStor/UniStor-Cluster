@@ -8,15 +8,8 @@
   loop_control:
     label: ''
 
-- name: Get Other partitions
-  debug:
-    var: item.flags[0]
-  loop: '{{ allPartition }}'
-  when: item.flags[0] != 'lvm'
-  loop_control:
-    label: ''
 
 - name: Test
   debug:
-    # var: allPartitions
-    var: lvmPartition
+    # var: allPartition
+    var: lvmFormattedPartition

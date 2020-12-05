@@ -1,7 +1,29 @@
 ---
-- include_tasks: All Drives
+- name: for Reruns, reset
+  set_fact:
+    allDrives: {}
+    emptyDrive: []
 
-- include_tasks: Empty Drive
+
+- name: get All Drives
+  set_fact:
+    allDrives: "{{ allDrives | combine({item :
+      {
+        'name' : item,
+        'partitions' : ansible_facts.devices[item].partitions
+      }
+      }) }}"
+  when: (ansible_facts.devices[item].vendor is defined and ansible_facts.devices[item].vendor != None )
+  loop: "{{ ansible_facts.devices.keys()|list }}"
+
+
+- name: get Empty Drives (unpartitioned)
+  set_fact:
+    emptyDrive: "{{ emptyDrive + [ item ] }}"
+  when: (ansible_facts.devices[item].vendor is defined and ansible_facts.devices[item].vendor != None )
+    and (ansible_facts.devices[item].partitions|length == 0)
+  loop: "{{ ansible_facts.device_links.ids.keys()|list }}"
+
 
 - include_tasks: .dbg
   when: dbg

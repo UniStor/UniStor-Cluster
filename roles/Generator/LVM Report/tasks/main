@@ -16,9 +16,9 @@
     vg: '{{ (Lvm.results[2].stdout | from_json).report[0].vg }}'
 
 
-- name: Create 'allLvm' Dictionary
+- name: Create 'lvmReport' Dictionary
   set_fact:
-    allLvm: "{{ allLvm | default({}) | combine (
+    lvmReport: "{{ lvmReport | default({}) | combine (
       { 'lv' : lv },
       { 'pv' : pv },
       { 'vg' : vg },
