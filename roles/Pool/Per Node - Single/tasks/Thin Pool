@@ -10,7 +10,8 @@
     poolExists: true
   when: item.lv_name == unistor.poolName
   loop: '{{ (lv.stdout | from_json).report[0].lv }}'
-
+  loop_control:
+    label: ''
 
 - name: Create Pool
   lvol:
